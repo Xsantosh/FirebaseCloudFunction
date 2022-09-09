@@ -57,3 +57,25 @@ export const onUserUpdate = functions.auth.user().onDelete(user =>{
     return Promise.resolve();
 });
 
+///Firebase firestore data 
+
+export const onDocumentCreated = functions.firestore.document('/document/{data}').onCreate((snapshot,context)=>{
+    console.log(`new snapshot created ${snapshot.data()}`);
+    return Promise.resolve();
+});
+
+
+export const onDocumentUpdated = functions.firestore.document('/document/$documentId').onUpdate((snapshot,context)=>{
+    console.log(`new snapshot original ${snapshot.before.data()}`);
+    console.log(`new snapshot updated ${snapshot.after.data()}`);
+    return Promise.resolve();
+});
+
+//same we can do with delete, write
+
+
+/// Firebase PUBSUB
+export const schedulerFunction = functions.pubsub.schedule('*/5 * * * *').onRun((context)=>{
+    console.log("This scheduler is run every 1 minute");
+    return Promise.resolve();
+});
