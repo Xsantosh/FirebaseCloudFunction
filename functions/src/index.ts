@@ -1,4 +1,5 @@
 import * as functions from "firebase-functions";
+import * as axios from 'axios';
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -32,4 +33,11 @@ export const api = functions.https.onRequest((req,res) => {
             res.send(`Request from ${req.method}`);
             break;
     }
+})
+
+export const serveRequest = functions.https.onRequest(async (req,res)=>{
+    //@ts-ignore
+    var data = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+    res.send(data.data);
+    Promise.resolve();
 })
