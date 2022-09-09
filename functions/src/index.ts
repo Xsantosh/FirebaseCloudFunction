@@ -12,3 +12,24 @@ import * as functions from "firebase-functions";
 export const helloWorld = functions.https.onRequest((req,res)=>{
         res.send("Hello from functions");
 })
+
+export const api = functions.https.onRequest((req,res) => {
+    switch (req.method) {
+        case 'GET':
+            res.send("Request from GET");
+            break;
+        case 'POST':
+            res.send("Request from POST");
+            break;
+        case 'PUT':
+            res.send('Request from PUT');
+            break;
+        case 'PATCH':
+            res.send('Request from PATCH');
+            break;
+        //Delete or any other method            
+        default:
+            res.send(`Request from ${req.method}`);
+            break;
+    }
+})
