@@ -10,7 +10,7 @@ import axios = require('axios');
 
 ///Simple get method response from functions
 export const helloWorld = functions.https.onRequest((req,res)=>{
-        res.send("Hello from functions");
+        res.send("Hello from functions to GET Request");
 })
 
 ///Request method management from Function call
